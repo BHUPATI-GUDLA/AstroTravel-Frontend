@@ -1,0 +1,66 @@
+<div class="dashboard-container">
+    <div class="form-section">
+      <div class="logo">
+        <img src="../../../../assets/images/logo.png" alt="Logo" />
+        <span class="brand"><h1 >Travel Date Picker</h1></span>
+        
+        <!-- <span class="settings">⚙️</span> -->
+      </div>
+      <form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
+        <div class="name-row">
+          <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+        </div>
+  
+        <mat-form-field appearance="fill" class="rounded-field">
+          <mat-label>Contact</mat-label>
+          <input matInput formControlName="contact" />
+        </mat-form-field>
+  
+        <div class="dob-row">
+          <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>Date</mat-label>
+            <input matInput formControlName="date" type="number" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>Month</mat-label>
+            <input matInput formControlName="month" type="number" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" type="number" />
+          </mat-form-field>
+        </div>
+  
+        <div class="centered-field">
+            <mat-form-field>
+                <mat-label>Pick a time</mat-label>
+                <input matInput [matTimepicker]="picker">
+                <mat-timepicker-toggle matIconSuffix [for]="picker"/>
+                <mat-timepicker #picker/>
+              </mat-form-field>
+
+          <!-- <mat-form-field appearance="fill" class="rounded-field">
+            <mat-label>Time</mat-label>
+            <input matInput formControlName="time" />
+          </mat-form-field> -->
+        </div>
+  
+        <div class="centered-field">
+          <button mat-raised-button color="primary" type="submit" class="pay-button">PAY</button>
+        </div>
+       <p style="display: flex; flex-direction: column; align-items: center; "  class="note">Please note: A fee of $5 will be charged for each use.</p>
+      </form>
+    </div>
+  
+    <div class="result-section">
+      <h2>Result</h2>
+      <img src="../../../../assets/images/travel_pass.png" alt="Result Graphic" />
+    </div>
+  </div>

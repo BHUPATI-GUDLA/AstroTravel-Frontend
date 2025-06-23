@@ -1,0 +1,120 @@
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+  
+    .form-section {
+      flex: 1;
+      background: #dbeeff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  
+      .logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+  
+        img {
+          width: 80px;
+          margin-right: 10px;
+        }
+        .brand {
+          font-weight: bold;
+          color: #1a3e74;
+          margin-right: auto;
+        }
+        .settings {
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+  
+        .name-row,
+        .dob-row {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+  
+          mat-form-field {
+            flex: 1;
+          }
+        }
+  
+        .centered-field {
+          display: flex;
+          justify-content: center;
+          mat-form-field, .pay-button {
+            width: 200px;
+          }
+        }
+  
+        .note {
+          margin-top: 1rem;
+          font-size: 0.9rem;
+          color: #2e2e2e;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-weight: bold;
+        }
+      }
+    }
+  
+    .result-section {
+      flex: 1;
+      background: #fdfcea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      h2 {
+        font-size: 2rem;
+        color: #1a3e74;
+        margin-bottom: 1rem;
+      }
+  
+      img {
+        width: 60%;
+        max-width: 300px;
+      }
+    }
+  }
+  
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 999px;
+    background-color: #bbd8f1;
+    padding: 0 12px;
+  }
+  
+  ::ng-deep .mat-input-element {
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  ::ng-deep .mat-form-field {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+  
+    .form-section,
+    .result-section {
+      flex: 1 1 100%;
+    }
+  
+    .centered-field mat-form-field,
+    .centered-field .pay-button {
+      width: 100% !important;
+    }
+  }
