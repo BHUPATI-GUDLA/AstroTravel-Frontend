@@ -11,6 +11,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { order } from '../../../entities/order';
 import { LoginService } from '../../../services/login-service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { GenericResponse } from '../../../entities/generic-response';
+import { DashboardResponse } from '../../../entities/dashboard-response';
 
 
 @Component({
@@ -40,6 +42,9 @@ export class DashboardComponent {
   private formDataSnapshot: any = null;
   paypalRendered = false;
 
+  showResult = false;           // boolean to control visibility
+  resultMessage = '';
+
   constructor(private fb: FormBuilder, private loginService: LoginService, private http: HttpClient) {
     this.travelForm = this.fb.group({
       firstName: [''],
@@ -51,17 +56,6 @@ export class DashboardComponent {
       time: ['']
     });
   }
-
-
-  // onSubmit() {
-  //   if (this.travelForm.valid) {
-  //     this.formDataSnapshot = this.travelForm.value;
-  //     console.log("Form submitted:", this.formDataSnapshot);
-  //     this.renderPayPalButton();
-  //   } else {
-  //     alert("Please complete all required fields.");
-  //   }
-  // }
 
   handleFormValidation() {
     if (this.travelForm.valid) {
@@ -75,25 +69,6 @@ export class DashboardComponent {
     }
   }
 
-
-
-  // ngOnInit(): void {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     console.log('PayPal object:', (window as any).paypal);
-  //     const paypal = (window as any).paypal;
-  //     paypal.Buttons().render(this.paymentRef()?.nativeElement);
-  //   //   paypal.Buttons(
-  //   //     {
-  //   //         style: {
-  //   //           layout: 'horizontal',
-  //   //           color: 'blue',
-  //   //           shape: 'rect',
-  //   //           label: 'paypal'
-  //   //         }
-  //   //     }
-  //   //   ).render(this.paymentRef()!.nativeElement);
-  //   // }
-  // }
 
   renderPayPalButton() {
     if (isPlatformBrowser(this.platformId)) {
@@ -187,12 +162,16 @@ export class DashboardComponent {
     };
 
     this.loginService.createOrder(orderDetails).subscribe({
-      next: (response: any) => {
-        console.log(response);
-        
-        console.log(response.body);
-        console.log(response.status);
-        alert(response.body);
+      next: (response: GenericResponse<any>) => {
+        if (response.code === 'OK') {
+          const DashboardResponse = response.body;
+          console.log(DashboardResponse.result);
+          this.resultMessage = DashboardResponse.result;
+          this.showResult = true;
+          this.paypalRendered = false;
+        } else {
+          alert('Order is not created. And server message ' + response.message);
+        }
       },
       error: () => {
         alert('Failed to creat order at backend...');

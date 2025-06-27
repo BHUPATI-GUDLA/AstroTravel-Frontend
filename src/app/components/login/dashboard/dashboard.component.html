@@ -64,6 +64,7 @@
   
     <div class="result-section">
       <h2>Result</h2>
-      <img src="../../../../assets/images/travel_pass.png" alt="Result Graphic" />
+      <img *ngIf="!showResult" src="../../../../assets/images/travel_pass.png" alt="Result Graphic" />
+      <h1 *ngIf="showResult">{{ resultMessage }}</h1>
     </div>
   </div>

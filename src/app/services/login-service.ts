@@ -19,7 +19,7 @@ export class LoginService {
   }
 
   createOrder(orderDetails: any){
-    return this.http.post<any>("http://localhost:8080/api/v1/create-order",orderDetails,{ observe: 'response' });
+    return this.http.post<any>("http://localhost:8080/api/v1/create-order",orderDetails);
   }
  
 
